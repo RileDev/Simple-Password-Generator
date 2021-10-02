@@ -82,7 +82,16 @@ namespace passwordGenerator
 
         private void writePassword(string fileName)
         {
-            int numOfLines = File.ReadAllLines(fileName).Length;
+            int numOfLines = 0;
+            try
+            {
+                numOfLines = File.ReadAllLines(fileName).Length;
+            }
+            catch
+            {
+                MessageBox.Show("An error has been occurred. Please restart the application.");
+                return;
+            }
             if (!File.ReadAllLines(fileName).Contains($"Password no.{numOfLines - 1} - {txtPassword.Text}"))
             {
                 try
